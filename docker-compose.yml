@@ -1,0 +1,21 @@
+version: '3'
+services:
+  cassandra-container:
+    build:
+      context: ./cassandra
+      dockerfile: Dockerfile
+    ports:
+      - "9042:9042"
+    networks:
+      - app-network
+
+  crawler-container:
+    build:
+      context: ./crawler
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
